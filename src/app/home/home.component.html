@@ -1,0 +1,136 @@
+<style>
+    .intro-section {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .search-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .product-category {
+        width: 200px;
+        border-color: rgb(0, 0, 0);
+    }
+
+    .search-input {
+        width: 300px;
+        margin-right: 10px;
+        border-color: rgb(0, 0, 0);
+        background-color: transparent;
+    }
+
+    .product-item {
+        background-color: rgb(255, 255, 255);
+        border: 1px solid rgb(0, 0, 0);
+        border-radius: 20px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .product-image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .product-waranty {
+        color: rgb(0, 102, 204);
+        margin-bottom: 10px;
+    }
+
+    .product-price {
+        margin-top: 10px;
+    }
+
+    .product-rating {
+        color: rgb(246, 246, 29);
+    }
+
+    .product-action {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .space-x {
+        margin-right: 55px;
+    }
+</style>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Logo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Thông báo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-shopping-cart icon"></i> Giỏ hàng
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Đăng nhập</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <div class="intro-section">
+        <h1>Đây là trang home</h1>
+        <p>Trang này hiển thị danh sách các sản phẩm, kèm ảnh</p>
+        <P>Các bạn có thể chọn xem sản phẩm và mua hàng tại đây</P>
+    </div>
+
+    <div class="search-box">
+        <input type="text" class="form-control search-input" placeholder="Tìm sản phẩm">
+        <select class="form-control product-category">
+            <option selected disabled>Danh mục sản phẩm</option>
+            <option value="">Đồ điện tử</option>
+            <option value="">Đồ gia dụng</option>
+            <option value="">Bánh kẹo</option>
+            <option value="">Hoa quả</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 col-md-6">
+            <div class="product-item">
+                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mba13-midnight-select-202402?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1708367688034"
+                    alt="Product Image" class="product-image">
+                <h3 class="product-name">Macbook Air 2021</h3>
+                <p class="product-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. </p>
+                <h6 class="product-waranty">Bảo hành 12 tháng</h6>
+                <h5 class="product-price">Giá: 30.000.000 VND</h5>
+                <div class="product-rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-alt"></i>
+                </div>
+                <div class="product-action">
+                    <button class="btn btn-outline-primary">Thêm vào giỏ hàng</button>
+                    <span class="space-x"></span>
+                    <button class="btn btn-primary">Mua ngay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
