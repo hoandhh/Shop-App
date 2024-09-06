@@ -22,10 +22,10 @@ import { RegisterComponent } from './register/register.component';
   ],
   providers: [],
   bootstrap: [
-    //HomeComponent,
+    HomeComponent,
     // DetailProductComponent,
     // OrderComponent,
-    OrderConfirmComponent,
+    // OrderConfirmComponent,
     // LoginComponent,
     // RegisterComponent
   ]
