@@ -13,12 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hoandhh.backend.dtos.UserDTO;
 import com.hoandhh.backend.dtos.UserLoginDTO;
+import com.hoandhh.backend.services.UserService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("${api.prefix}/users")
+@RequiredArgsConstructor
 public class UserController {
+    public final UserService userService;
+
     @PostMapping("/register")
     public ResponseEntity<?> createUser(@Valid @RequestBody UserDTO userDTO, BindingResult result) {
         try {
@@ -43,6 +48,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody UserLoginDTO userLoginDTO) {
         // Kiểm tra thông tin đăng nhập và sinh token
+        String token = userService.login(userLoginDTO.getPhoneNumber(), userLoginDTO.getPassword());
         // Trả về token trong response
         return ResponseEntity.ok("Token");
     }
