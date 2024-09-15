@@ -1,7 +1,13 @@
 package com.hoandhh.backend.controllers;
 
 import com.hoandhh.backend.dtos.ProductDTO;
+import com.hoandhh.backend.dtos.ProductImageDTO;
+import com.hoandhh.backend.models.Product;
+import com.hoandhh.backend.models.ProductImage;
+import com.hoandhh.backend.services.IProductService;
+
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,7 +29,10 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("${api.prefix}/products")
+@RequiredArgsConstructor
 public class ProductController {
+    private final IProductService productService;
+
     @PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> createProduct(@Valid @ModelAttribute ProductDTO productDTO,
             BindingResult result) {
@@ -35,6 +44,10 @@ public class ProductController {
                         .toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }
+
+            // Lưu product vào DB
+            Product newProduct = productService.createProduct(productDTO);
+
             List<MultipartFile> files = productDTO.getFiles();
             if (files == null) {
                 files = new ArrayList<MultipartFile>();
@@ -54,9 +67,13 @@ public class ProductController {
                     return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body("File must be an image");
                 }
                 // Lưu file và cập nhật thumbnail trong DTO
-                String filename = storeFile(file); // Thay thế hàm này với code của bạn để lưu file
+                String filename = storeFile(file); 
                 // Lưu vào đối tượng product trong DB => sẽ làm sau
                 // Lưu vào bảng product_images
+                ProductImage productImage = productService.createProductImage(newProduct.getId(),
+                        ProductImageDTO.builder()
+                                .imageUrl(filename)
+                                .build());
             }
             return ResponseEntity.ok("Create product successfully");
         } catch (Exception e) {

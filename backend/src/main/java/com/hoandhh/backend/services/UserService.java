@@ -19,7 +19,7 @@ public class UserService implements IUserService {
     private final RoleRepository roleRepository;
 
     @Override
-    public User createUser(UserDTO userDTO) {
+    public User createUser(UserDTO userDTO) throws DataNotFoundException {
         String phoneNumber = userDTO.getPhoneNumber();
         // Kiểm tra xem số điện thoại đã tồn tại hay chưa
         if (userRepository.existsByPhoneNumber(phoneNumber)) {
@@ -35,13 +35,11 @@ public class UserService implements IUserService {
                 .facebookAccountId(userDTO.getFacebookAccountId())
                 .googleAccountId(userDTO.getGoogleAccountId())
                 .build();
-        try {
-            Role role = roleRepository.findById(userDTO.getRoleId())
-                    .orElseThrow(() -> new DataNotFoundException("Role not found"));
-            newUser.setRole(role);
-        } catch (DataNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+
+        Role role = roleRepository.findById(userDTO.getRoleId())
+                .orElseThrow(() -> new DataNotFoundException("Role not found"));
+        newUser.setRole(role);
+
         // Kiểm tra nếu có accountId, không yêu cầu password
         if (userDTO.getFacebookAccountId() == 0 && userDTO.getGoogleAccountId() == 0) {
             String password = userDTO.getPassword();

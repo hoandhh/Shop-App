@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hoandhh.backend.dtos.UserDTO;
 import com.hoandhh.backend.dtos.UserLoginDTO;
-import com.hoandhh.backend.services.UserService;
+import com.hoandhh.backend.services.IUserService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("${api.prefix}/users")
 @RequiredArgsConstructor
 public class UserController {
-    public final UserService userService;
+    public final IUserService userService;
 
     @PostMapping("/register")
     public ResponseEntity<?> createUser(@Valid @RequestBody UserDTO userDTO, BindingResult result) {
@@ -38,7 +38,7 @@ public class UserController {
             if (!userDTO.getPassword().equals(userDTO.getRetypePassword())) {
                 return ResponseEntity.badRequest().body("Password does not match");
             }
-
+            userService.createUser(userDTO);
             return ResponseEntity.ok("Register successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -48,8 +48,8 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody UserLoginDTO userLoginDTO) {
         // Kiểm tra thông tin đăng nhập và sinh token
-        String token = userService.login(userLoginDTO.getPhoneNumber(), userLoginDTO.getPassword());
+        String token = userService.login(userLoginDTO.getPhoneNumber(), userLoginDTO.getPassword()); 
         // Trả về token trong response
-        return ResponseEntity.ok("Token");
+        return ResponseEntity.ok(token);
     }
 }
