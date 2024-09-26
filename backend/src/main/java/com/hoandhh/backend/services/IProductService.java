@@ -5,15 +5,15 @@ import org.springframework.data.domain.PageRequest;
 
 import com.hoandhh.backend.dtos.ProductDTO;
 import com.hoandhh.backend.dtos.ProductImageDTO;
-import com.hoandhh.backend.exceptions.DataNotFoundException;
 import com.hoandhh.backend.models.*;
+import com.hoandhh.backend.responses.ProductResponse;
 
 public interface IProductService {
-    public Product createProduct(ProductDTO productDTO) throws DataNotFoundException;
+    Product createProduct(ProductDTO productDTO) throws Exception;
 
     Product getProductById(long id) throws Exception;
 
-    Page<Product> getAllProducts(PageRequest pageRequest);
+    Page<ProductResponse> getAllProducts(PageRequest pageRequest);
 
     Product updateProduct(long id, ProductDTO productDTO) throws Exception;
 

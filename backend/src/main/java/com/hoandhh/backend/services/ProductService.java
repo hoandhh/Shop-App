@@ -17,6 +17,7 @@ import com.hoandhh.backend.models.ProductImage;
 import com.hoandhh.backend.repositories.CategoryRepository;
 import com.hoandhh.backend.repositories.ProductImageRepository;
 import com.hoandhh.backend.repositories.ProductRepository;
+import com.hoandhh.backend.responses.ProductResponse;
 
 import lombok.RequiredArgsConstructor;
 
@@ -47,9 +48,9 @@ public class ProductService implements IProductService {
                 "Cannot find product with id =" + productId));
     }
 
-    public Page<Product> getAllProducts(PageRequest pageRequest) {
-        // Lấy danh sách sản phẩm theo trang(page) và giới hạn(limit)
-        return productRepository.findAll(pageRequest);
+    public Page<ProductResponse> getAllProducts(PageRequest pageRequest) {
+        // Lấy danh sách sản phẩm theo page và limit
+        return productRepository.findAll(pageRequest).map(product -> ProductResponse.fromProduct(product));
     }
 
     public Product updateProduct(long id, ProductDTO productDTO) throws Exception {
