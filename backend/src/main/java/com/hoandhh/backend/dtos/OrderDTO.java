@@ -1,5 +1,8 @@
 package com.hoandhh.backend.dtos;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.constraints.Min;
@@ -39,6 +42,9 @@ public class OrderDTO {
 
     @JsonProperty("shipping_method")
     private String shippingMethod;
+
+    @JsonProperty("shipping_date")
+    private LocalDate shippingDate;
 
     @JsonProperty("shipping_address")
     private String shippingAddress;

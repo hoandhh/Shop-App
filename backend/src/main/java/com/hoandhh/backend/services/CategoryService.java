@@ -13,10 +13,6 @@ import java.util.List;
 public class CategoryService implements ICategoryService {
     private final CategoryRepository categoryRepository;
 
-    // public CategoryService(CategoryRepository categoryRepository) {
-    // this.categoryRepository = categoryRepository;
-    // }
-
     @Override
     public Category createCategory(CategoryDTO categoryDTO) {
         Category newCategory = Category.builder()

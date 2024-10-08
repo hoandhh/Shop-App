@@ -8,5 +8,4 @@ import com.hoandhh.backend.models.Order;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> findByUserId(long userId);
-
 }
