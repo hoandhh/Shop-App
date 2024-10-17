@@ -1,5 +1,5 @@
 server:
-    port: 8888
+  port: 8888
 
 spring:
   datasource:
@@ -22,3 +22,8 @@ spring:
 
 api:
   prefix: api/v1
+
+jwt:
+  # 30 days = 30 * 24 * 60 * 60
+  expiration: 2592000
+  secretKey: Hoan Nek

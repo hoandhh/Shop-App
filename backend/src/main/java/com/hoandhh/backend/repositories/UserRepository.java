@@ -1,5 +1,6 @@
 package com.hoandhh.backend.repositories;
 
+import com.hoandhh.backend.dtos.UserDTO;
 import com.hoandhh.backend.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
